@@ -43,6 +43,7 @@
 }
 
 - (M3U8ExtXStreamInf *)firstStreamInf {
+    [self sortByBandwidthInOrder:NSOrderedDescending];
     return [self.m3u8InfoList firstObject];
 }
 
