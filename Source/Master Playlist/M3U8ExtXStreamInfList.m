@@ -44,7 +44,15 @@
 
 - (M3U8ExtXStreamInf *)firstStreamInf {
     [self sortByBandwidthInOrder:NSOrderedDescending];
-    return [self.m3u8InfoList firstObject];
+    M3U8ExtXStreamInf* first = nil;
+    for (M3U8ExtXStreamInf* inf in self.m3u8InfoList) {
+        NSDictionary* dic = [inf valueForKeyPath:@"dictionary"];
+        if (![dic.allKeys containsObject:@"VIDEO-RANGE"]) {
+            first = inf;
+            break;
+        }
+    }
+    return first?first:[self.m3u8InfoList firstObject];
 }
 
 - (M3U8ExtXStreamInf *)lastXStreamInf {
