@@ -14,5 +14,6 @@
     
 - (instancetype)initWithText:(NSString*)text;
 - (NSString*)next;
+- (NSString*)nextFileLine;
 
 @end

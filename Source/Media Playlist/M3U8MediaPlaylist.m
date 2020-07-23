@@ -105,7 +105,7 @@
             [params setValue:line forKey:M3U8_EXTINF_DURATION];
             
             //then get URI
-            NSString *nextLine = [lines next];
+            NSString *nextLine = [lines nextFileLine];
             [params setValue:nextLine forKey:M3U8_EXTINF_URI];
             
             M3U8SegmentInfo *segment = [[M3U8SegmentInfo alloc] initWithDictionary:params xKey:key];

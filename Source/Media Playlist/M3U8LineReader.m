@@ -29,5 +29,19 @@
     }
     return nil;
 }
+
+- (NSString*)nextFileLine {
+    while (_index < _lines.count) {
+        NSString* line = [_lines[_index] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        _index++;
+
+        if (line.length > 0) {
+            if (![line hasPrefix:@"#"]) {
+                return line;
+            }
+        }
+    }
+    return nil;
+}
 @end
 
