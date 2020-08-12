@@ -43,7 +43,7 @@
 }
 
 - (M3U8ExtXStreamInf *)firstStreamInf {
-    [self sortByBandwidthInOrder:NSOrderedDescending];
+    //[self sortByBandwidthInOrder:NSOrderedDescending];
     M3U8ExtXStreamInf* first = nil;
     for (M3U8ExtXStreamInf* inf in self.m3u8InfoList) {
         NSDictionary* dic = [inf valueForKeyPath:@"dictionary"];
