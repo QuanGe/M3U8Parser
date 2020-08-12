@@ -56,7 +56,8 @@
  */
 - (id)initWithURL:(NSURL *)URL error:(NSError **)error;
 - (id)initWithString:(NSString *)string baseURL:(NSURL *)URL error:(NSError **)error;
-- (id)initWithString:(NSString *)string originalURL:(NSURL *)originalURL
+- (id)initWithString:(NSString *)string resolution:(NSString*)resolution baseURL:(NSURL *)URL error:(NSError **)error;
+- (id)initWithString:(NSString *)string resolution:(NSString*)resolution originalURL:(NSURL *)originalURL
              baseURL:(NSURL *)baseURL error:(NSError * *)error;
 
 // 改变 mainMediaPl

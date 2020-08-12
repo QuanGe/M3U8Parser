@@ -27,6 +27,7 @@
 
 @property (nonatomic, strong) M3U8MediaPlaylist *mainMediaPl;
 @property (nonatomic, strong) M3U8MediaPlaylist *audioPl;
+@property (nonatomic, strong) NSString* resolution;
 //@property (nonatomic, strong) M3U8MediaPlaylist *subtitlePl;
 
 @end
@@ -46,10 +47,15 @@
 }
 
 - (id)initWithString:(NSString *)string baseURL:(NSURL *)baseURL error:(NSError **)error {
-    return [self initWithString:string originalURL:nil baseURL:baseURL error:error];
+    return [self initWithString:string resolution:nil  originalURL:nil baseURL:baseURL error:error];
 }
 
-- (id)initWithString:(NSString *)string originalURL:(NSURL *)originalURL
+- (id)initWithString:(NSString *)string resolution:(NSString*)resolution baseURL:(NSURL *)baseURL error:(NSError **)error {
+
+    return [self initWithString:string  resolution:resolution originalURL:nil baseURL:baseURL error:error];
+}
+
+- (id)initWithString:(NSString *)string resolution:(NSString*)resolution  originalURL:(NSURL *)originalURL
              baseURL:(NSURL *)baseURL error:(NSError * *)error {
 
     if (NO == [string isExtendedM3Ufile]) {
@@ -61,9 +67,15 @@
         if ([string isMasterPlaylist]) {
             self.originalURL = originalURL;
             self.baseURL = baseURL;
+            self.resolution = resolution;
             self.masterPlaylist = [[M3U8MasterPlaylist alloc] initWithContent:string baseURL:baseURL];
             self.masterPlaylist.name = INDEX_PLAYLIST_NAME;
-            self.currentXStreamInf = self.masterPlaylist.xStreamList.firstStreamInf;
+            if (self.resolution) {
+                self.currentXStreamInf = [self.masterPlaylist.xStreamList firstStreamInfWithResolution:resolution];
+            }else {
+                self.currentXStreamInf = self.masterPlaylist.xStreamList.firstStreamInf;
+            }
+
             if (self.currentXStreamInf) {
                 NSError *ero;
                 NSURL *m3u8URL = self.currentXStreamInf.m3u8URL;

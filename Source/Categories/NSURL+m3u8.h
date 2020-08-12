@@ -25,4 +25,6 @@
  */
 - (void)loadM3U8AsyncCompletion:(void (^)(M3U8PlaylistModel *model, NSError *error))completion;
 
+- (void)loadM3U8AsyncResolution:(NSString*)resolution Completion:(void (^)(M3U8PlaylistModel *model, NSError *error))completion;
+
 @end

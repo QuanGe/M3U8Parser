@@ -55,6 +55,21 @@
     return first?first:[self.m3u8InfoList firstObject];
 }
 
+- (M3U8ExtXStreamInf *)firstStreamInfWithResolution:(NSString*)resolution {
+    //[self sortByBandwidthInOrder:NSOrderedDescending];
+    M3U8ExtXStreamInf* first = nil;
+    for (M3U8ExtXStreamInf* inf in self.m3u8InfoList) {
+        NSDictionary* dic = [inf valueForKeyPath:@"dictionary"];
+        if ([[dic objectForKey:@"RESOLUTION"] containsString:resolution]) {
+            first = inf;
+            break;
+        }
+    }
+    return first?first:[self.m3u8InfoList firstObject];
+}
+
+
+
 - (M3U8ExtXStreamInf *)lastXStreamInf {
     return [self.m3u8InfoList lastObject];
 }
